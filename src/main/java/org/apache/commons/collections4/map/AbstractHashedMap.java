@@ -763,8 +763,8 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
             final AbstractHashedMap<K, V> cloned = (AbstractHashedMap<K, V>) super.clone();
             cloned.data = new HashEntry[data.length];
             cloned.entrySet = null;
-            cloned.keySet = null;
-            cloned.values = null;
+            cloned.keySet = null; // Reset keySet
+            cloned.values = null; // Reset values
             cloned.modCount = 0;
             cloned.size = 0;
             cloned.init();
