@@ -256,6 +256,19 @@
         </configuration>
       </plugin>
       <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.15.8</version> <!-- Use the latest stable version -->
+        <configuration>
+         <targetClasses>
+           <param>org.apache.commons.collections4.*</param> <!-- Replace with your package name -->
+         </targetClasses>
+         <targetTests>
+           <param>org.apache.commons.collections4.test.*</param> <!-- Replace with your test package name -->
+         </targetTests>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>4.0.0-M16</version>
