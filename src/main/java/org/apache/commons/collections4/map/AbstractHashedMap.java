@@ -577,7 +577,7 @@ public class AbstractHashedMap<K, V> extends AbstractMap<K, V> implements Iterab
     transient EntrySet<K, V> entrySet;
 
     /** Key set */
-    transient KeySet<K> internalKeySet;
+    transient KeySet<K> keySet;
 
     /** Values */
     transient Values<V> values;

@@ -20,4 +20,3 @@ site-content
 # Mac files
 .DS_Store
 /bin/
-/target/

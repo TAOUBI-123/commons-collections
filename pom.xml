@@ -16,9 +16,9 @@
    limitations under the License.
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -28,7 +28,7 @@
     </parent>
 
     <artifactId>commons-collections4</artifactId>
-    <version>4.5.0</version> <!-- Removed SNAPSHOT for stability -->
+    <version>4.5.0</version>
     <name>Apache Commons Collections</name>
     <description>Apache Commons Collections library.</description>
     <url>https://commons.apache.org/proper/commons-collections/</url>
@@ -53,6 +53,18 @@
             <artifactId>jmh-core</artifactId>
             <version>${commons.jmh.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>5.0.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.guava</groupId>
+                    <artifactId>guava</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
         <!-- JMH Annotation Processor -->
         <dependency>
@@ -71,6 +83,12 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -98,6 +116,14 @@
             <artifactId>commons-codec</artifactId>
             <version>1.17.1</version>
             <optional>true</optional>
+        </dependency>
+
+        <!-- Guava Testlib Dependency -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava-testlib</artifactId>
+            <version>31.1-jre</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -144,51 +170,7 @@
                         </execution>
                     </executions>
                 </plugin>
-
-                <!-- Surefire Plugin -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.1.2</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
-
-    <reporting>
-        <plugins>
-            <!-- Checkstyle Plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.17.0</version>
-                <configuration>
-                    <configLocation>${basedir}/src/conf/checkstyle.xml</configLocation>
-                    <headerLocation>${basedir}/src/conf/license-header.txt</headerLocation>
-                    <suppressionsLocation>
-                        ${basedir}/src/conf/checkstyle-suppressions.xml
-                    </suppressionsLocation>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
-
-    <profiles>
-        <!-- Profile for Java 24 and Up -->
-        <profile>
-            <id>java-24-up</id>
-            <activation>
-                <jdk>[24,)</jdk>
-            </activation>
-            <properties>
-                <commons.jacoco.version>0.8.13-SNAPSHOT</commons.jacoco.version>
-            </properties>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>sonatype-snapshots</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
-    </profiles>
 </project>
