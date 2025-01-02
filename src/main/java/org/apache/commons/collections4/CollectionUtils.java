@@ -61,6 +61,8 @@ public class CollectionUtils {
      * @param <O>  the element type
      */
 	private static final String COLLECTION_LITERAL = "collection";
+	private static final String COLL1 = "coll1";
+	private static final String COLL2 = "coll2";
 
     private static class CardinalityHelper<O> {
 
@@ -615,8 +617,8 @@ public class CollectionUtils {
      * @since 4.0
      */
     public static boolean containsAll(final Collection<?> coll1, final Collection<?> coll2) {
-        Objects.requireNonNull(coll1, "coll1");
-        Objects.requireNonNull(coll2, "coll2");
+        Objects.requireNonNull(coll1, COLL1);
+        Objects.requireNonNull(coll2, COLL2);
         if (coll2.isEmpty()) {
             return true;
         }
@@ -657,8 +659,8 @@ public class CollectionUtils {
      * @see #intersection
      */
     public static boolean containsAny(final Collection<?> coll1, final Collection<?> coll2) {
-        Objects.requireNonNull(coll1, "coll1");
-        Objects.requireNonNull(coll2, "coll2");
+        Objects.requireNonNull(coll1, COLL1);
+        Objects.requireNonNull(coll2, COLL2);
         if (coll1.size() < coll2.size()) {
             for (final Object aColl1 : coll1) {
                 if (coll2.contains(aColl1)) {
@@ -691,8 +693,8 @@ public class CollectionUtils {
      * @see #intersection
      */
     public static <T> boolean containsAny(final Collection<?> coll1, @SuppressWarnings("unchecked") final T... coll2) {
-        Objects.requireNonNull(coll1, "coll1");
-        Objects.requireNonNull(coll2, "coll2");
+        Objects.requireNonNull(coll1, COLL1);
+        Objects.requireNonNull(coll2, COLL2);
         if (coll1.size() < coll2.length) {
             for (final Object aColl1 : coll1) {
                 if (ArrayUtils.contains(coll2, aColl1)) {
