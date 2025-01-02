@@ -60,6 +60,8 @@ public class CollectionUtils {
      * Helper class to easily access cardinality properties of two collections.
      * @param <O>  the element type
      */
+	private static final String COLLECTION_LITERAL = "collection";
+
     private static class CardinalityHelper<O> {
 
         static boolean equals(final Collection<?> a, final Collection<?> b) {
@@ -273,7 +275,7 @@ public class CollectionUtils {
      * @throws NullPointerException if the collection or elements is null
      */
     public static <C> boolean addAll(final Collection<C> collection, final C... elements) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(elements, "elements");
         boolean changed = false;
         for (final C element : elements) {
@@ -292,7 +294,7 @@ public class CollectionUtils {
      * @throws NullPointerException if the collection or enumeration is null
      */
     public static <C> boolean addAll(final Collection<C> collection, final Enumeration<? extends C> enumeration) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(enumeration, "enumeration");
         boolean changed = false;
         while (enumeration.hasMoreElements()) {
@@ -313,7 +315,7 @@ public class CollectionUtils {
      * @throws NullPointerException if the collection or iterable is null
      */
     public static <C> boolean addAll(final Collection<C> collection, final Iterable<? extends C> iterable) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(iterable, "iterable");
         if (iterable instanceof Collection<?>) {
             return collection.addAll((Collection<? extends C>) iterable);
@@ -331,7 +333,7 @@ public class CollectionUtils {
      * @throws NullPointerException if the collection or iterator is null
      */
     public static <C> boolean addAll(final Collection<C> collection, final Iterator<? extends C> iterator) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(iterator, "iterator");
         boolean changed = false;
         while (iterator.hasNext()) {
@@ -351,7 +353,7 @@ public class CollectionUtils {
      * @since 3.2
      */
     public static <T> boolean addIgnoreNull(final Collection<T> collection, final T object) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         return object != null && collection.add(object);
     }
 
@@ -368,7 +370,7 @@ public class CollectionUtils {
      */
     @Deprecated
     public static <O> int cardinality(final O obj, final Iterable<? super O> collection) {
-        return IterableUtils.frequency(Objects.requireNonNull(collection, "collection"), obj);
+        return IterableUtils.frequency(Objects.requireNonNull(collection, COLLECTION_LITERAL), obj);
     }
 
     /**
@@ -812,7 +814,7 @@ public class CollectionUtils {
      * @since 4.0
      */
     public static <E> E extractSingleton(final Collection<E> collection) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         if (collection.size() != 1) {
             throw new IllegalArgumentException("Can extract singleton only when collection size == 1");
         }
@@ -1263,7 +1265,7 @@ public class CollectionUtils {
      * @throws NullPointerException if the collection is null
      */
     public static boolean isFull(final Collection<? extends Object> collection) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         if (collection instanceof BoundedCollection) {
             return ((BoundedCollection<?>) collection).isFull();
         }
@@ -1386,7 +1388,7 @@ public class CollectionUtils {
      * @throws NullPointerException if the collection is null
      */
     public static int maxSize(final Collection<? extends Object> collection) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         if (collection instanceof BoundedCollection) {
             return ((BoundedCollection<?>) collection).maxSize();
         }
@@ -1419,7 +1421,7 @@ public class CollectionUtils {
      * @since 4.0
      */
     public static <E> Collection<List<E>> permutations(final Collection<E> collection) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         final PermutationIterator<E> it = new PermutationIterator<>(collection);
         final Collection<List<E>> result = new ArrayList<>();
         while (it.hasNext()) {
@@ -1445,7 +1447,7 @@ public class CollectionUtils {
      */
     public static <C> Collection<C> predicatedCollection(final Collection<C> collection,
                                                          final Predicate<? super C> predicate) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(predicate, "predicate");
         return PredicatedCollection.predicatedCollection(collection, predicate);
     }
@@ -1508,7 +1510,7 @@ public class CollectionUtils {
     public static <E> Collection<E> removeAll(final Iterable<E> collection,
                                               final Iterable<? extends E> remove,
                                               final Equator<? super E> equator) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(remove, "remove");
         Objects.requireNonNull(equator, "equator");
         final Transformer<E, EquatorWrapper<E>> transformer = input -> new EquatorWrapper<>(equator, input);
@@ -1613,7 +1615,7 @@ public class CollectionUtils {
      * @since 3.2
      */
     public static <C> Collection<C> retainAll(final Collection<C> collection, final Collection<?> retain) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(retain, "retain");
         return ListUtils.retainAll(collection, retain);
     }
@@ -1647,7 +1649,7 @@ public class CollectionUtils {
     public static <E> Collection<E> retainAll(final Iterable<E> collection,
                                               final Iterable<? extends E> retain,
                                               final Equator<? super E> equator) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(retain, "retain");
         Objects.requireNonNull(equator, "equator");
         final Transformer<E, EquatorWrapper<E>> transformer = input -> new EquatorWrapper<>(equator, input);
@@ -2024,7 +2026,7 @@ public class CollectionUtils {
      */
     @Deprecated
     public static <C> Collection<C> synchronizedCollection(final Collection<C> collection) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         return SynchronizedCollection.synchronizedCollection(collection);
     }
 
@@ -2085,7 +2087,7 @@ public class CollectionUtils {
      */
     public static <E> Collection<E> transformingCollection(final Collection<E> collection,
             final Transformer<? super E, ? extends E> transformer) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         Objects.requireNonNull(transformer, "transformer");
         return TransformedCollection.transformingCollection(collection, transformer);
     }
@@ -2131,7 +2133,7 @@ public class CollectionUtils {
      */
     @Deprecated
     public static <C> Collection<C> unmodifiableCollection(final Collection<? extends C> collection) {
-        Objects.requireNonNull(collection, "collection");
+        Objects.requireNonNull(collection, COLLECTION_LITERAL);
         return UnmodifiableCollection.unmodifiableCollection(collection);
     }
 
