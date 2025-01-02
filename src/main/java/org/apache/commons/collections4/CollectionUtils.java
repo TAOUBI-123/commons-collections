@@ -63,6 +63,7 @@ public class CollectionUtils {
 	private static final String COLLECTION_LITERAL = "collection";
 	private static final String COLL1 = "coll1";
 	private static final String COLL2 = "coll2";
+	private static final String UNSPOBJTYPE = "Unsupported object type: ";
 
     private static class CardinalityHelper<O> {
 
@@ -1090,7 +1091,7 @@ public class CollectionUtils {
         try {
             return Array.get(object, i);
         } catch (final IllegalArgumentException ex) {
-            throw new IllegalArgumentException("Unsupported object type: " + object.getClass().getName());
+            throw new IllegalArgumentException(UNSPOBJTYPE + object.getClass().getName());
         }
     }
 
@@ -1879,7 +1880,7 @@ public class CollectionUtils {
             try {
                 total = Array.getLength(object);
             } catch (final IllegalArgumentException ex) {
-                throw new IllegalArgumentException("Unsupported object type: " + object.getClass().getName());
+                throw new IllegalArgumentException(UNSPOBJTYPE + object.getClass().getName());
             }
         }
         return total;
@@ -1932,7 +1933,7 @@ public class CollectionUtils {
         try {
             return Array.getLength(object) == 0;
         } catch (final IllegalArgumentException ex) {
-            throw new IllegalArgumentException("Unsupported object type: " + object.getClass().getName());
+            throw new IllegalArgumentException(UNSPOBJTYPE + object.getClass().getName());
         }
     }
 
