@@ -175,12 +175,16 @@
 					<artifactId>pitest-maven</artifactId>
 					<version>1.15.1</version>
 					<configuration>
+						<!-- no longer required -->
 						<targetClasses>
-							<param>org.apache.commons.collection4.*</param>
+							<param>org.apache.commons.collections4.*</param>
 						</targetClasses>
+						<!-- no longer required -->
+						<targetTests>
+							<param>org.apache.commons.collections4.*Test</param>
+						</targetTests>
 					</configuration>
 				</plugin>
-
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
