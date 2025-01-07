@@ -16,7 +16,7 @@
  */
 
 package benchmarks;
-
+import benchmarks.collections.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
