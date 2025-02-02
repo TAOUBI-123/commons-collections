@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  backend:
+    image: docker.io/jihad856/weight-converter-backend:1.0.0
+    container_name: weight-backend
+    ports:
+      - "5000:5000"
+
+  frontend:
+    image: docker.io/jihad856/weight-converter-frontend:1.0.0
+    container_name: weight-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
