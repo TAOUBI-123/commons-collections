@@ -16,9 +16,7 @@ implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-# 
-Use 
-official Node.js image
+# Use official Node.js image
 FROM node:18
 
 # Set working directory
