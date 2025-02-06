@@ -2,15 +2,25 @@ version: "3.8"
 
 services:
   backend:
-    image: docker.io/jihad856/weight-converter-backend:1.0.0
+    build: ./backend
     container_name: weight-backend
     ports:
       - "5000:5000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - weight-network
 
   frontend:
-    image: docker.io/jihad856/weight-converter-frontend:1.0.0
+    build: ./frontend
     container_name: weight-frontend
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
+    networks:
+      - weight-network
+
+networks:
+  weight-network:
+    driver: bridge
